@@ -21,14 +21,19 @@ Optional:
 -seed A random number seed. This is so the program reports the same sampleing every time, or you can give it different
 seeds if you want two different random datasets.  Default is my son's birthday.
 
-This uses a lot of memory so you may run out.
-If that happens your computer will say "segmentation fault".  You can try:
-use LSF
-ish
-To get to a node with more memory or you may have to submit it to the LSF queue.  See Michele for more help.
+How to get it to compile:
+
+Compiling the file may or may not be a big hassle because you need bamtools. My make file may NOT be doing the linking quite right. If you know how to fix that please let me know! But the program should still run.
+
+First, though, copy all the files in here to a single directory on your unix server. The server should have g++ is installed (it probably is).
 
 
-It crashed. I am sad. And I can't really figure out how it works.:
-The utilities in this directory are quick and dirty so they aren't as full tested and not 
-optimized for usability and don't have proper documentation.  (It's not you, it's me.)  So if you're 
-stuck just contact Michele at mbusby@broadinstitute.org or stop by.
+Bamtools
+
+To get this to compile you will need to download Derek Barnett's bamtools API and install it in a folder somewhere. It is here: https://github.com/pezmaster31/bamtools You need the API, not the command line program though is quite useful to have. Then, after you install it, 
+
+--> you need to edit the Makefile in this folder so that everywhere it says "FolderWhereBamToolsIs" you put in the folder where bamtools is located.
+
+Compiling
+
+Go to the folder where everything is installed in type "make". Ignore the warnings about Handy doing stupid stuff. If nothing says ERROR and it makes an executable called ComplexityByStartPos you should be all set.
