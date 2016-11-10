@@ -1,13 +1,16 @@
 Authors: Michele Busby (code and specification)
 
 What does it do?
-Process a bam file to get all of the alignments for a random set of reads.
+Process a bam file to get all of the alignments for a random set of reads at the read level, not alignment.
 
 What would I want to do that?
-The random downsampling in Picard gives you a random set of *alignments*.  Reads that map to multiple places
-may or may not have all of their alignments sampled, and will be surely overrepresented in the final sampling.
-This gets a set of random set by reads, regardless of their alignment.  If in doubt you probably want this one,
-not the Picard one.
+There are many ways to randomly downsample a bam. Use this one if:
+-You need to set the number of reads beforehand (it won't be exact - it will be some slop, like around a poisson distribution)
+-You have multiply mapped reads in your sample
+The random downsampling in Picard gives you a random set of *alignments*.  Reads that map to multiple places may or may not have all of their alignments sampled, and will be surely overrepresented in the final sampling. This gets a set of random set by reads, regardless of their alignment.  If in doubt you probably want this one,not the Picard one.
+
+Don't use this one if:
+You have huge bam files and nothing is multiply mapped. In that case, you could fill up your memory and it will crash. In that case, use samtools or picard or whatever you like.
 
 How does it work? 
 Type:
@@ -37,3 +40,6 @@ To get this to compile you will need to download Derek Barnett's bamtools API an
 Compiling
 
 Go to the folder where everything is installed in type "make". Ignore the warnings about Handy doing stupid stuff. If nothing says ERROR and it makes an executable called ComplexityByStartPos you should be all set.
+
+License:
+You can use it.
